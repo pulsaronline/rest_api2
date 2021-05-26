@@ -11,7 +11,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
 public class PageObject extends CartAddTest {
-     static void addItemToCart() {
+     static void itemToCartApi() {
         Response response = given()
                 .contentType(contentType)
                 .body(body)
@@ -39,7 +39,7 @@ public class PageObject extends CartAddTest {
                 .body(targetElement, is("(" + (cartSize + 1) + ")"));
     }
 
-    static void checkQuantityItems() {
+    static void itemToCartSelenide() {
         open("/build-your-cheap-own-computer");
         $("#add-to-cart-button-72").click();
         $("#topcartlink a[href='/cart']").shouldHave(text("(1)"));

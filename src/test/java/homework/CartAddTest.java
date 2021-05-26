@@ -38,10 +38,16 @@ public class CartAddTest extends TestBase {
     static int cartSize = 0;
 
     @Test
-    void addItemToCartAndCheckTheItemAddedTest() {
+    void addItemToCartAndCheckTheItemAddedAPITest() {
         //expected cart size
         //cart size+=1
-        step("Добавляем один и тот же товар в корзину", PageObject::addItemToCart);
-        step("Проверяем что товар добавлен в корзину", PageObject::checkQuantityItems);
+        step("Добавляем товар в корзину через API и проверяем что он добавлен", PageObject::itemToCartApi);
+    }
+
+    @Test
+    void addItemToCartAndCheckTheItemAddedSelenideTest() {
+        //expected cart size
+        //cart size+=1
+        step("Добавляем товар в корзину через Selenide и проверяем что он добавлен", PageObject::itemToCartSelenide);
     }
 }
