@@ -25,8 +25,8 @@ public class PageObject extends CartAddTest {
                 .extract().response();
         cartItems = response.jsonPath().get(targetElement);
         cartSize = Integer.parseInt(cartItems.substring(1, cartItems.length() - 1));
-        getResponse(cartSize + 1);
-/*        given()
+
+        given()
                 .contentType(contentType)
                 .body(body)
                 .cookie(cookie)
@@ -36,7 +36,7 @@ public class PageObject extends CartAddTest {
                 .statusCode(200)
                 .log().body()
                 .body(targetCondition, is(true))
-                .body(targetElement, is("(" + (cartSize + 1) + ")"));*/
+                .body(targetElement, is("(" + (cartSize + 1) + ")"));
     }
 
     static void itemToCartSelenide() {
@@ -45,9 +45,7 @@ public class PageObject extends CartAddTest {
         $("#topcartlink a[href='/cart']").shouldHave(text("(1)"));
 
         String nopCustomerCookie = WebDriverRunner.getWebDriver().manage().getCookieNamed("Nop.customer").getValue();
-        System.out.println("Nop.customer = " + nopCustomerCookie);
-        getResponse(2);
-/*
+
         given()
                 .contentType(contentType)
                 .body(body)
@@ -59,26 +57,8 @@ public class PageObject extends CartAddTest {
                 .log().body()
                 .body(targetCondition, is(true))
                 .body(targetElement, is("(2)"));
-*/
-
-//                .body(targetElement, is("(2)"));
 
         Selenide.refresh();
         $("#topcartlink a[href='/cart']").shouldHave(text("(2)"));
-    }
-
-    static Response getResponse(int cartSize){
-        given()
-                .contentType(contentType)
-                .body(body)
-                .cookie(cookie)
-                .when()
-                .post(responseURL)
-                .then()
-                .statusCode(200)
-                .log().body()
-                .body(targetCondition, is(true))
-                .body(targetElement, is("(" + (cartSize) + ")"));
-        return null;
     }
 }
